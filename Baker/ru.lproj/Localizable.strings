@@ -1,0 +1,121 @@
+
+// Shelf Navigation Title at the top of the main Issues List
+"SHELF_NAVIGATION_TITLE" = "Журналист";
+
+// Products alert
+"PRODUCTS_REQUEST_FAILED_TITLE" = "Невозможно подключиться к App Store";
+"PRODUCTS_REQUEST_FAILED_CLOSE" = "Закрыть";
+
+// Info button
+"INFO_BUTTON_TEXT" = "Настройки";
+
+// Subscription button
+"SUBSCRIBE_BUTTON_TEXT" = "Подписка";
+"SUBSCRIBE_BUTTON_DISABLED_TEXT" = "Подписка выполняется...";
+"SUBSCRIBE_BUTTON_SUBSCRIBED_TEXT" = "Вы подписаны";
+
+"SUBSCRIPTIONS_SHEET_FREE" = "Подписка бесплатно";
+"SUBSCRIPTIONS_SHEET_RESTORE" = "Восстановить покупки";
+"SUBSCRIPTIONS_SHEET_CLOSE" = "Закрыть";
+
+"SUBSCRIPTIONS_SHEET_GENERIC" = "Опции подписки";
+"SUBSCRIPTIONS_SHEET_SUBSCRIBED" = "Вы подписаны";
+"SUBSCRIPTIONS_SHEET_NOT_SUBSCRIBED" = "Вы не подписаны";
+"SUBSCRIPTIONS_MESSAGE_AUTO" = "Автоматически продлеваемая подписка.\n Она будет продлена автоматически после окончанию текущего периода";
+
+
+// Subscription alerts
+"SUBSCRIPTION_SUCCESSFUL_TITLE" = "Подписка";
+"SUBSCRIPTION_SUCCESSFUL_MESSAGE" = "Вы успешно подписались";
+"SUBSCRIPTION_SUCCESSFUL_CLOSE" = "Закрыть";
+"SUBSCRIPTION_FAILED_TITLE" = "Подписка не удалась";
+"SUBSCRIPTION_FAILED_CLOSE" = "Закрыть";
+
+// Issue purchase alerts
+"ISSUE_PURCHASE_SUCCESSFUL_TITLE" = "Оплата";
+"ISSUE_PURCHASE_SUCCESSFUL_MESSAGE" = "Вы успешно приобрели %@";
+"ISSUE_PURCHASE_SUCCESSFUL_CLOSE" = "Закрыть";
+"ISSUE_PURCHASE_FAILED_TITLE" = "Оплата не успешна";
+"ISSUE_PURCHASE_FAILED_CLOSE" = "Закрыть";
+
+// Restore alerts
+"RESTORE_FAILED_TITLE" = "Ошибка восстановления";
+"RESTORE_FAILED_CLOSE" = "Закрыть";
+
+"RESTORED_ISSUE_NOT_RECOGNISED_TITLE" = "Некоторые номера не могут быть восстановленны";
+"RESTORED_ISSUE_NOT_RECOGNISED_MESSAGE" = "Следующие идентификаторы номеров не найдены, и соответствующие номера не могут быть восстановленны:\n%@.\n\nОбратитесь в поддержку за информацией.";
+"RESTORED_ISSUE_NOT_RECOGNISED_CLOSE" = "Close";
+
+// Download alert
+"DOWNLOAD_FAILED_TITLE" = "Загрузка неуспешна";
+"DOWNLOAD_FAILED_MESSAGE" = "Номер не может быть загружен";
+"DOWNLOAD_FAILED_CLOSE" = "Закрыть";
+
+// Unzip alert
+"UNZIP_FAILED_TITLE" = "Открытие неуспешно";
+"UNZIP_FAILED_MESSAGE" = "Этот номер не может быть прочитан";
+"UNZIP_FAILED_CLOSE" = "Закрыть";
+
+// Connection alert
+"INTERNET_CONNECTION_UNAVAILABLE_TITLE" = "Нет подключения к интернет";
+"INTERNET_CONNECTION_UNAVAILABLE_MESSAGE" = "Интернет недоступен. Некоторые функции данного приложения требуют активного подключения к интернет.";
+"INTERNET_CONNECTION_UNAVAILABLE_CLOSE" = "OK";
+
+// Issue buttons
+"ACTION_REMOTE_TEXT" = "Скачать";
+"ACTION_DOWNLOADED_TEXT" = "Читать";
+"ACTION_BUY_TEXT" = "Купить";
+"ARCHIVE_TEXT" = "Удалить";
+"CONNECTING_TEXT" = "Подключение...";
+"DOWNLOADING_TEXT" = "Загрузка...";
+"OPENING_TEXT" = "Загрузка...";
+"BUYING_TEXT" = "Оплата...";
+"RETRIEVING_TEXT" = "Получение цены...";
+
+// Issue states
+"FREE_TEXT" = "Бесплатно";
+"PURCHASED_TEXT" = "Приобретено";
+
+// Archiving alert
+"ARCHIVE_ALERT_TITLE" = "Вы уверены, что хотите удалить номер?";
+"ARCHIVE_ALERT_MESSAGE" = "Этот номре будет удален с устройства. Вы можете скачать его бесплатно в любое время позже.";
+"ARCHIVE_ALERT_BUTTON_CANCEL" = "Отмена";
+"ARCHIVE_ALERT_BUTTON_OK" = "Удалить";
+
+// Mail alert
+"MAILTO_ALERT_TITLE" = "Ошибка";
+"MAILTO_ALERT_MESSAGE" = "Ваше устройство не поддерживает отправку email-ов!";
+"MAILTO_ALERT_CLOSE" = "OK";
+
+// Modal web view
+"WEB_MODAL_FAILURE_MESSAGE" = "Невозможно подключиться.";
+"WEB_MODAL_CLOSE_BUTTON_TEXT" = "Назад";
+
+// Transaction recording alert
+"TRANSACTION_RECORDING_FAILED_TITLE" = "Невозможно подтвердтить покупку на удаленном сервере";
+"TRANSACTION_RECORDING_FAILED_MESSAGE" = "Операция будет повторена до момента получения успешного ответа";
+"TRANSACTION_RECORDING_FAILED_CLOSE" = "Закрыть";
+
+// Issue opening failure alert
+"ISSUE_OPENING_FAILED_TITLE" = "Невозможно открыть номре";
+"ISSUE_OPENING_FAILED_MESSAGE" = "Возникла ошибка во время открытия номера. Попробуйте скачать его опять или свяжитесь с издательством.";
+"ISSUE_OPENING_FAILED_CLOSE" = "Закрыть";
+
+"Subscription" = "Подписка";
+"Purchase a subscription" = "Приобрести подписку";
+"Auto renewal" = "Автообновление";
+"Background downloading" = "Фоновая загрузка";
+"Restore purchases" = "Восстановить покупки";
+"Purchases" = "Покупки";
+"Info" = "Настройки";
+"About publishing" = "Об издателе";
+"Developer" = "О разработчике";
+
+"Shop" = "Магазин";
+"Downloads" = "Загруженное";
+"Favorits" = "Избранное";
+
+// Subscriptions
+// (These are just examples: you'll need to provide your own product IDs and names)
+"com.basispress.overtime_1year" = "Подписка на 1 год";
+//"com.example.MyBook.subscription.6months" = "Half Year Subscription";

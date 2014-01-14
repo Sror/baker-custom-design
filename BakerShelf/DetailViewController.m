@@ -1,0 +1,166 @@
+//
+//  DetailViewController.m
+//  Baker
+//
+//  Created by Антон Малыгин on 27.12.13.
+//
+//
+
+#import "DetailViewController.h"
+#import "PreviewImageView.h"
+#import "Utils.h"
+
+@interface DetailViewController ()
+{
+    UILabel *_infoLabel;
+    CGFloat _pageShift;
+    BOOL _isScroll;
+}
+
+@end
+
+@implementation DetailViewController
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    self.view.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    
+    _isScroll = NO;
+    
+    self.favoriteButton.selected = _issueVC.issue.favorits;
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        
+        UIBarButtonItem *buyItem = [[UIBarButtonItem alloc] initWithTitle:_issueVC.issue.price style:UIBarButtonItemStylePlain target:self action:@selector(buyAction:)];
+        UIBarButtonItem *subsc = [[UIBarButtonItem alloc ]initWithTitle:NSLocalizedString(@"Subscription", nil) style:UIBarButtonItemStylePlain target:self action:@selector(subscribe)];
+        
+        self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:buyItem, subsc, nil];
+    } else {
+        [self.buyButton setTitle:_issueVC.issue.price forState:UIControlStateNormal];
+    }
+    
+    self.backgroundForScrollView.layer.masksToBounds = NO;
+    self.backgroundForScrollView.layer.shadowRadius = 5;
+    self.backgroundForScrollView.layer.shadowOpacity = 0.5;
+    
+    self.titleLabel.text = _issueVC.issue.title;
+    _infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.textScrollView.bounds.size.width - 5.0, 0.0)];
+    _infoLabel.numberOfLines = 0;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        _infoLabel.textAlignment = NSTextAlignmentLeft;
+        self.backgroundForScrollView.layer.shadowOffset = CGSizeMake(2, 1);
+    } else {
+        _infoLabel.textAlignment = NSTextAlignmentRight;
+        self.backgroundForScrollView.layer.shadowOffset = CGSizeMake(5, 3);
+    }
+    _infoLabel.lineBreakMode = NSLineBreakByWordWrapping;
+//    _infoLabel.text = @"Олег Митволь занимал пост префекта Северного округа столицы с июля 2009 года, а 4 октября 2010 года врио мэра Москвы Владимир Ресин подписал указ о его досрочной отставке, объяснив это тем, что методы работы Митволя не нашли поддержки среди населения округа. До этого, с 2004 года, Олег Митволь работал замруководителем Росприроднадзора.Сейчас Митволь – председатель Центрального совета экологической партии «Альянс зеленых - Народная партия». В сентябре 2012 года он участвовал в выборах мэра Химкок и занял третье место. Памятная доска – это не просто память о ком-то или чем-то, это все-таки знак почтения потомков, это то, что хочется сохранить в памяти города, - считает председатель.";
+    _infoLabel.text = _issueVC.issue.info;
+    [_infoLabel sizeToFit];
+    
+    [self.textScrollView addSubview:_infoLabel];
+    
+    [self.textScrollView setContentSize:CGSizeMake(self.textScrollView.bounds.size.width, _infoLabel.bounds.size.height)];
+    
+    CGFloat originX = 0.0;
+    NSMutableArray *array = [NSMutableArray arrayWithArray:_issueVC.issue.previews];
+    [array insertObject:_issueVC.issue.coverPath atIndex:0];
+    BOOL firstObject = YES;
+    for (NSString *str in array) {
+        PreviewImageView *prev = [[PreviewImageView alloc] initWithFrame:CGRectMake(originX, 0.0, self.imagesScrollView.bounds.size.width, self.imagesScrollView.bounds.size.height)];
+        if (firstObject) {
+            [_issueVC.issue getCoverWithCache:YES andBlock:^(UIImage *img) {
+                prev.image = img;
+            }];
+        } else {
+            [_issueVC.issue getPreviewForUrl:[NSURL URLWithString:str] andBlock:^(UIImage *img) {
+                prev.image = img;
+            }];
+        }
+        [self.imagesScrollView addSubview:prev];
+        originX = originX + self.imagesScrollView.bounds.size.width;
+        firstObject = NO;
+    }
+    
+    self.pageControl.numberOfPages = array.count;
+    self.pageControl.currentPage = 0;
+    
+    [self.imagesScrollView setContentSize:CGSizeMake(originX, self.imagesScrollView.bounds.size.height)];
+    
+    _pageShift = (self.textScrollView.contentSize.height/(array.count + 1));
+}
+
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView  {
+    if (scrollView.tag == 1) {
+        CGFloat pageWidth = scrollView.frame.size.width;
+        float fractionalPage = scrollView.contentOffset.x / pageWidth;
+        NSInteger page = lround(fractionalPage);
+        self.pageControl.currentPage = page;
+        
+        [self.textScrollView setContentOffset:CGPointMake(0.0, _pageShift*page) animated:YES];
+    }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (scrollView.tag == 2 && _isScroll) {
+        CGFloat pageHeight = _pageShift;
+        float fractionalPage = scrollView.contentOffset.y / pageHeight;
+        NSInteger page = lround(fractionalPage);
+        self.pageControl.currentPage = page;
+        
+        [self.imagesScrollView setContentOffset:CGPointMake(self.imagesScrollView.bounds.size.width*page, 0.0) animated:YES];
+    }
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    
+    return YES;
+}
+
+- (IBAction)panGesture:(id)sender {
+    UIPanGestureRecognizer *gesture = (UIPanGestureRecognizer *)sender;
+    if (gesture.state == UIGestureRecognizerStateBegan) {
+        _isScroll = YES;
+    } else if (gesture.state == UIGestureRecognizerStateEnded) {
+        _isScroll = NO;
+    }
+}
+
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)buyAction:(id)sender {
+    [_issueVC buy];
+}
+
+- (IBAction)subscribeAction:(id)sender {
+}
+
+- (IBAction)favoriteAction:(id)sender {
+    self.favoriteButton.selected = !self.favoriteButton.selected;
+    _issueVC.issue.favorits = self.favoriteButton.selected;
+}
+
+- (void)subscribe
+{
+    [_delegate detailViewControllerDelegateShowSubscribeAlertView];
+}
+
+@end
