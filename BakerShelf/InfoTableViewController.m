@@ -136,6 +136,14 @@
         
     } else if (indexPath.section == 2) {
         
+        if (indexPath.row == 0) {
+            
+            [_delegate infoTableViewControllerDelegatePushWebViewWithLink:@"http://ya.ru"];
+            
+        } else if (indexPath.row == 1) {
+            [_delegate infoTableViewControllerDelegatePushWebViewWithLink:@"http://ya.ru"];
+        }
+
     }
 }
 

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		049D15E9188586EA004F91F4 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 049D15E8188586EA004F91F4 /* WebViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		049D15EA188589D0004F91F4 /* libFlurry_4.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2C6F7D18844D57002C166C /* libFlurry_4.3.0.a */; };
 		04A0660C186ACF6A00A351F6 /* InfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A0660B186ACF6A00A351F6 /* InfoTableViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		20CC551D16AD346900DEFB5C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 20CC551F16AD346900DEFB5C /* Localizable.strings */; };
 		25807A3018705C530059553D /* pop_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 25807A2E18705C530059553D /* pop_up.png */; };
@@ -105,11 +107,12 @@
 		BF0785EB1794AF4000EB988E /* info in Resources */ = {isa = PBXBuildFile; fileRef = BF0785EA1794AF4000EB988E /* info */; };
 		BF78D1B0180C8F070093DFBC /* BakerAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF78D1AF180C8F070093DFBC /* BakerAssets.xcassets */; };
 		BFAB78D317B2A67E00E91ADE /* BakerAnalyticsEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = BFAB78D217B2A67E00E91ADE /* BakerAnalyticsEvents.m */; };
-		CD2C6F7E18844D57002C166C /* libFlurry_4.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2C6F7D18844D57002C166C /* libFlurry_4.3.0.a */; };
 		F9ACAED4188412890091E69D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9ACAED3188412890091E69D /* Security.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		049D15E7188586EA004F91F4 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		049D15E8188586EA004F91F4 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		04A0660A186ACF6A00A351F6 /* InfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoTableViewController.h; sourceTree = "<group>"; };
 		04A0660B186ACF6A00A351F6 /* InfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoTableViewController.m; sourceTree = "<group>"; };
 		20CC551E16AD346900DEFB5C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -282,10 +285,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				049D15EA188589D0004F91F4 /* libFlurry_4.3.0.a in Frameworks */,
 				F9ACAED4188412890091E69D /* Security.framework in Frameworks */,
 				2593BC1B18624F7A00D414CB /* ImageIO.framework in Frameworks */,
 				AB67F5BC16EE9B79005A04F6 /* SystemConfiguration.framework in Frameworks */,
-				CD2C6F7E18844D57002C166C /* libFlurry_4.3.0.a in Frameworks */,
 				ABD245531639E3650080F056 /* AVFoundation.framework in Frameworks */,
 				ABABF1A81646C06100A75E67 /* StoreKit.framework in Frameworks */,
 				AB5D48D01609178900828D16 /* NewsstandKit.framework in Frameworks */,
@@ -469,6 +472,8 @@
 				9FF795A615B4C57E00899E51 /* ShelfViewController.m */,
 				04A0660A186ACF6A00A351F6 /* InfoTableViewController.h */,
 				04A0660B186ACF6A00A351F6 /* InfoTableViewController.m */,
+				049D15E7188586EA004F91F4 /* WebViewController.h */,
+				049D15E8188586EA004F91F4 /* WebViewController.m */,
 				259E908B186E050D00AA1059 /* DetailViewController.h */,
 				259E908C186E050D00AA1059 /* DetailViewController.m */,
 				259E908D186E050D00AA1059 /* DetailViewController.xib */,
@@ -690,6 +695,7 @@
 				2593BC0718624CBC00D414CB /* ReaderConstants.m in Sources */,
 				ABAFB59815AB9A2E002FA498 /* main.m in Sources */,
 				ABAFB59C15AB9A2E002FA498 /* AppDelegate.m in Sources */,
+				049D15E9188586EA004F91F4 /* WebViewController.m in Sources */,
 				AB40045315B4B83000D87E2A /* BakerViewController.m in Sources */,
 				AB40045F15B4B83000D87E2A /* IndexViewController.m in Sources */,
 				AB40046115B4B83000D87E2A /* InterceptorWindow.m in Sources */,
@@ -837,6 +843,7 @@
 					"$(inherited)",
 					"/Users/shamatov/Downloads/baker-master\\ 7/Flurry",
 					"/Users/mariya/Desktop/baker-master\\ 7/Flurry",
+					"/Users/antonmalygin/Documents/baker-custom-design/Flurry",
 				);
 				PRODUCT_NAME = Overtime;
 				PROVISIONING_PROFILE = "";
@@ -860,6 +867,7 @@
 					"$(inherited)",
 					"/Users/shamatov/Downloads/baker-master\\ 7/Flurry",
 					"/Users/mariya/Desktop/baker-master\\ 7/Flurry",
+					"/Users/antonmalygin/Documents/baker-custom-design/Flurry",
 				);
 				PRODUCT_NAME = Overtime;
 				PROVISIONING_PROFILE = "";

@@ -34,7 +34,8 @@
 {
     [super viewDidLoad];
     
-    self.view.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.view.layer.borderColor = [UIColor grayColor].CGColor;
+    self.view.layer.borderWidth = 1.0f;
     
     _isScroll = NO;
     

@@ -12,6 +12,7 @@
 
 - (void)infoTableViewControllerDelegateShowSubscribeAlertView;
 - (void)infoTableViewControllerDelegateDismiss;
+- (void)infoTableViewControllerDelegatePushWebViewWithLink:(NSString *)link;
 
 @end
 

@@ -39,6 +39,7 @@
 #import "NSData+Base64.h"
 #import "NSString+Extensions.h"
 #import "Utils.h"
+#import "WebViewController.h"
 
 
 //@implementation UINavigationBar (customNav)
@@ -1008,6 +1009,8 @@
 //    UIViewController *popoverContent = [[UIViewController alloc] init];
     InfoTableViewController *popoverContent = [[InfoTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     popoverContent.delegate = self;
+    
+    UINavigationController *navigController = [[UINavigationController alloc] initWithRootViewController:popoverContent];
 //    UIWebView *popoverView = [[UIWebView alloc] init];
 //    popoverView.backgroundColor = [UIColor blackColor];
 //    popoverView.delegate = self;
@@ -1021,7 +1024,7 @@
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
         // On iPad use the UIPopoverController
-        infoPopover = [[UIPopoverController alloc] initWithContentViewController:popoverContent];
+        infoPopover = [[UIPopoverController alloc] initWithContentViewController:navigController];
         [infoPopover setPopoverContentSize:CGSizeMake(320.0, 400.0)];
         [infoPopover presentPopoverFromBarButtonItem:sender
                             permittedArrowDirections:UIPopoverArrowDirectionUp
@@ -1090,7 +1093,7 @@
         [self.navigationController pushViewController:controller animated:YES];
     } else {
         _backView = [[UIControl alloc] initWithFrame:self.navigationController.view.bounds];
-        _backView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.7];
+        _backView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.2];
         [_backView addTarget:self action:@selector(handleTapBackView:) forControlEvents:UIControlEventTouchDown];
         controller.view.center = _backView.center;
         [_backView addSubview:controller.view];
@@ -1126,6 +1129,13 @@
 - (void)detailViewControllerDelegateShowSubscribeAlertView
 {
     [self buildSubscriptionsAlertView];
+}
+
+- (void)infoTableViewControllerDelegatePushWebViewWithLink:(NSString *)link
+{
+    WebViewController *webVC = [[WebViewController alloc] initWithLink:link];
+    [self.navigationController pushViewController:webVC animated:YES];
+    [webVC release];
 }
 
 @end

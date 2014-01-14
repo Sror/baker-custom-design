@@ -44,6 +44,13 @@
 #import "DetailViewController.h"
 #import "BakerAPI.h"
 
+@interface IssueViewController ()
+{
+    UIButton *_favoriteButton;
+}
+
+@end
+
 @implementation IssueViewController
 
 #pragma mark - Synthesis
@@ -104,6 +111,14 @@
     }
 
     UI ui = [IssueViewController getIssueContentMeasures];
+    
+    _favoriteButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_favoriteButton addTarget:self action:@selector(favoriteAction:) forControlEvents:UIControlEventTouchUpInside];
+    [_favoriteButton setBackgroundImage:[UIImage imageNamed:@"fav_on.png"] forState:UIControlStateNormal];
+    [_favoriteButton setBackgroundImage:[UIImage imageNamed:@"fav_off.png"] forState:UIControlStateSelected];
+    _favoriteButton.frame = CGRectMake((ui.cellPadding + ui.thumbWidth) - 22.0f, ui.cellPadding + 15.0f, 57.0f, 31.0f);
+    _favoriteButton.selected = self.issue.favorits;
+    [self.view addSubview:_favoriteButton];
 
     self.issueCover = [UIButton buttonWithType:UIButtonTypeCustom];
     issueCover.frame = CGRectMake(ui.cellPadding, ui.cellPadding, ui.thumbWidth, ui.thumbHeight);
@@ -500,6 +515,7 @@
 
 - (void)dealloc
 {
+    [_favoriteButton release];
     [issue release];
     [actionButton release];
     [archiveButton release];
@@ -791,6 +807,11 @@
     } else {
         return CGSizeMake((screenRect.size.width - 30) / 2, [IssueViewController getIssueCellHeight]);
     }
+}
+
+- (void)favoriteAction:(id)sender {
+    _favoriteButton.selected = !_favoriteButton.selected;
+    self.issue.favorits = _favoriteButton.selected;
 }
 
 
