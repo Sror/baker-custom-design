@@ -11,7 +11,7 @@
 @protocol InfoTableViewControllerDelegate <NSObject>
 
 - (void)infoTableViewControllerDelegateShowSubscribeAlertView;
-- (void)infoTableViewControllerDelegateDismiss;
+- (void)infoTableViewControllerDelegateDismissAnimated:(BOOL)animated;
 - (void)infoTableViewControllerDelegatePushWebViewWithLink:(NSString *)link;
 
 @end

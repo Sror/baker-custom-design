@@ -1121,9 +1121,9 @@
     [self buildSubscriptionsAlertView];
 }
 
-- (void)infoTableViewControllerDelegateDismiss
+- (void)infoTableViewControllerDelegateDismissAnimated:(BOOL)animated
 {
-    [infoPopover dismissPopoverAnimated:YES];
+    [infoPopover dismissPopoverAnimated:animated];
 }
 
 - (void)detailViewControllerDelegateShowSubscribeAlertView

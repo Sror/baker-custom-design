@@ -125,7 +125,7 @@
         if (indexPath.row == 0) {
             if (![PurchasesManager sharedInstance].subscribed)
             {
-                [_delegate infoTableViewControllerDelegateDismiss];
+                [_delegate infoTableViewControllerDelegateDismissAnimated:YES];
                 [_delegate infoTableViewControllerDelegateShowSubscribeAlertView];
             }
         }
@@ -135,12 +135,13 @@
         }
         
     } else if (indexPath.section == 2) {
-        
+        [_delegate infoTableViewControllerDelegateDismissAnimated:NO];
         if (indexPath.row == 0) {
-            
+            // об издателе
             [_delegate infoTableViewControllerDelegatePushWebViewWithLink:@"http://ya.ru"];
             
         } else if (indexPath.row == 1) {
+            // о разработчике
             [_delegate infoTableViewControllerDelegatePushWebViewWithLink:@"http://ya.ru"];
         }
 

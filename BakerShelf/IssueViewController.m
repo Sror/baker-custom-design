@@ -540,7 +540,17 @@
     if ([status isEqualToString:@"remote"] || [status isEqualToString:@"purchased"]) {
     #ifdef BAKER_NEWSSTAND
         [[NSNotificationCenter defaultCenter] postNotificationName:@"BakerIssueDownload" object:self]; // -> Baker Analytics Event
-        [self download];
+//        [self download];
+//        [self removeNewState];
+        NSString *xibName = nil;
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+            xibName = @"DetailViewController_iPhone";
+        } else {
+            xibName = @"DetailViewController";
+        }
+        DetailViewController *detail = [[DetailViewController alloc] initWithNibName:xibName bundle:nil];
+        detail.issueVC = self;
+        [_delegate showViewController:detail];
         [self removeNewState];
     #endif
     } else if ([status isEqualToString:@"downloaded"] || [status isEqualToString:@"bundled"]) {
