@@ -146,7 +146,9 @@
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     titleLabel.textAlignment = NSTextAlignmentLeft;
-
+    titleLabel.adjustsFontSizeToFitWidth = YES;
+    titleLabel.minimumScaleFactor = 0.1;
+    
     [self.view addSubview:titleLabel];
 
     // SETUP INFO LABEL
@@ -277,20 +279,28 @@
     [self.issue getCoverWithCache:cache andBlock:^(UIImage *image) {
         [issueCover setBackgroundImage:image forState:UIControlStateNormal];
     }];
+    
+    CGFloat validWidth = 170.0;
+    
+    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) {
+        validWidth = 90.0f;
+    }
 
     int heightOffset = issueCover.frame.origin.y + issueCover.frame.size.height + 5.0;
     // SETUP TITLE LABEL
     titleLabel.font = titleFont;
-    titleLabel.frame = CGRectMake(ui.cellPadding, heightOffset, 170, 60);
-    titleLabel.numberOfLines = 3;
+    titleLabel.frame = CGRectMake(ui.cellPadding, heightOffset, validWidth, (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 60 : 30);
+    titleLabel.numberOfLines = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) ? 3 : 1;
     titleLabel.text = self.issue.title;
-    [titleLabel sizeToFit];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        [titleLabel sizeToFit];
+    }
 
     heightOffset = heightOffset + titleLabel.frame.size.height + 5;
 
     // SETUP INFO LABEL
     infoLabel.font = infoFont;
-    infoLabel.frame = CGRectMake(ui.contentOffset, heightOffset, 170, 60);
+    infoLabel.frame = CGRectMake(ui.contentOffset, heightOffset, validWidth, 60);
     infoLabel.numberOfLines = 3;
     infoLabel.text = self.issue.info;
     [infoLabel sizeToFit];
@@ -298,7 +308,7 @@
 //    heightOffset = heightOffset + infoLabel.frame.size.height + 5;
 
     // SETUP PRICE LABEL
-    self.priceLabel.frame = CGRectMake(ui.contentOffset, heightOffset, 170, textLineheight);
+    self.priceLabel.frame = CGRectMake(ui.contentOffset, heightOffset, validWidth, textLineheight);
     priceLabel.font = infoFont;
 
 //    heightOffset = heightOffset + priceLabel.frame.size.height + 10;
@@ -324,7 +334,7 @@
 //    heightOffset = heightOffset + self.loadingLabel.frame.size.height + 5;
 
     // SETUP PROGRESS BAR
-    self.progressBar.frame = CGRectMake((self.view.bounds.size.width - 170.0)/2.0, heightOffset, 170, 30);
+    self.progressBar.frame = CGRectMake((self.view.bounds.size.width - validWidth)/2.0, heightOffset, validWidth, 30);
 }
 
 - (void)refreshNewState
@@ -540,17 +550,7 @@
     if ([status isEqualToString:@"remote"] || [status isEqualToString:@"purchased"]) {
     #ifdef BAKER_NEWSSTAND
         [[NSNotificationCenter defaultCenter] postNotificationName:@"BakerIssueDownload" object:self]; // -> Baker Analytics Event
-//        [self download];
-//        [self removeNewState];
-        NSString *xibName = nil;
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-            xibName = @"DetailViewController_iPhone";
-        } else {
-            xibName = @"DetailViewController";
-        }
-        DetailViewController *detail = [[DetailViewController alloc] initWithNibName:xibName bundle:nil];
-        detail.issueVC = self;
-        [_delegate showViewController:detail];
+        [self download];
         [self removeNewState];
     #endif
     } else if ([status isEqualToString:@"downloaded"] || [status isEqualToString:@"bundled"]) {

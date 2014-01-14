@@ -12,7 +12,6 @@
 
 @interface DetailViewController ()
 {
-    UILabel *_infoLabel;
     CGFloat _pageShift;
     BOOL _isScroll;
 }
@@ -34,7 +33,7 @@
 {
     [super viewDidLoad];
     
-    self.view.layer.borderColor = [UIColor grayColor].CGColor;
+    self.view.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.view.layer.borderWidth = 1.0f;
     
     _isScroll = NO;
@@ -56,26 +55,19 @@
     self.backgroundForScrollView.layer.shadowOpacity = 0.5;
     
     self.titleLabel.text = _issueVC.issue.title;
-    _infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.textScrollView.bounds.size.width - 5.0, 0.0)];
-    _infoLabel.numberOfLines = 0;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        _infoLabel.textAlignment = NSTextAlignmentLeft;
         self.backgroundForScrollView.layer.shadowOffset = CGSizeMake(2, 1);
     } else {
-        _infoLabel.textAlignment = NSTextAlignmentRight;
         self.backgroundForScrollView.layer.shadowOffset = CGSizeMake(5, 3);
     }
-    _infoLabel.lineBreakMode = NSLineBreakByWordWrapping;
 //    _infoLabel.text = @"Олег Митволь занимал пост префекта Северного округа столицы с июля 2009 года, а 4 октября 2010 года врио мэра Москвы Владимир Ресин подписал указ о его досрочной отставке, объяснив это тем, что методы работы Митволя не нашли поддержки среди населения округа. До этого, с 2004 года, Олег Митволь работал замруководителем Росприроднадзора.Сейчас Митволь – председатель Центрального совета экологической партии «Альянс зеленых - Народная партия». В сентябре 2012 года он участвовал в выборах мэра Химкок и занял третье место. Памятная доска – это не просто память о ком-то или чем-то, это все-таки знак почтения потомков, это то, что хочется сохранить в памяти города, - считает председатель.";
-    _infoLabel.text = _issueVC.issue.info;
-    [_infoLabel sizeToFit];
-    
-    [self.textScrollView addSubview:_infoLabel];
-    
-    [self.textScrollView setContentSize:CGSizeMake(self.textScrollView.bounds.size.width, _infoLabel.bounds.size.height)];
     
     CGFloat originX = 0.0;
-    NSMutableArray *array = [NSMutableArray arrayWithArray:_issueVC.issue.previews];
+    CGFloat originY = 0.0;
+    
+    NSMutableArray *array = [NSMutableArray arrayWithArray:[_issueVC.issue.previews allKeys]];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:_issueVC.issue.previews];
+    [dict setObject:_issueVC.issue.info forKey:_issueVC.issue.coverPath];
     [array insertObject:_issueVC.issue.coverPath atIndex:0];
     BOOL firstObject = YES;
     for (NSString *str in array) {
@@ -92,14 +84,28 @@
         [self.imagesScrollView addSubview:prev];
         originX = originX + self.imagesScrollView.bounds.size.width;
         firstObject = NO;
+        
+        UILabel *infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, originY, self.textScrollView.bounds.size.width, self.textScrollView.bounds.size.height)];
+        infoLabel.numberOfLines = 0;
+        infoLabel.text = [dict objectForKey:str];
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+            infoLabel.textAlignment = NSTextAlignmentLeft;
+        } else {
+            infoLabel.textAlignment = NSTextAlignmentRight;
+        }
+        infoLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        [self.textScrollView addSubview:infoLabel];
+        
+        originY = originY + self.textScrollView.bounds.size.height;
     }
+    
+    [self.textScrollView setContentSize:CGSizeMake(self.textScrollView.bounds.size.width, self.textScrollView.bounds.size.height*array.count)];
     
     self.pageControl.numberOfPages = array.count;
     self.pageControl.currentPage = 0;
     
     [self.imagesScrollView setContentSize:CGSizeMake(originX, self.imagesScrollView.bounds.size.height)];
     
-    _pageShift = (self.textScrollView.contentSize.height/(array.count + 1));
 }
 
 
@@ -110,14 +116,9 @@
         NSInteger page = lround(fractionalPage);
         self.pageControl.currentPage = page;
         
-        [self.textScrollView setContentOffset:CGPointMake(0.0, _pageShift*page) animated:YES];
-    }
-}
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    if (scrollView.tag == 2 && _isScroll) {
-        CGFloat pageHeight = _pageShift;
+        [self.textScrollView setContentOffset:CGPointMake(0.0, self.textScrollView.bounds.size.height*page) animated:YES];
+    } else if (scrollView.tag == 2) {
+        CGFloat pageHeight = scrollView.frame.size.height;
         float fractionalPage = scrollView.contentOffset.y / pageHeight;
         NSInteger page = lround(fractionalPage);
         self.pageControl.currentPage = page;
@@ -125,6 +126,18 @@
         [self.imagesScrollView setContentOffset:CGPointMake(self.imagesScrollView.bounds.size.width*page, 0.0) animated:YES];
     }
 }
+
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+//{
+//    if (scrollView.tag == 2 && _isScroll) {
+//        CGFloat pageHeight = _pageShift;
+//        float fractionalPage = scrollView.contentOffset.y / pageHeight;
+//        NSInteger page = lround(fractionalPage);
+//        self.pageControl.currentPage = page;
+//        
+//        [self.imagesScrollView setContentOffset:CGPointMake(self.imagesScrollView.bounds.size.width*page, 0.0) animated:YES];
+//    }
+//}
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
     

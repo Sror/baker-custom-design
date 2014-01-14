@@ -1093,7 +1093,7 @@
         [self.navigationController pushViewController:controller animated:YES];
     } else {
         _backView = [[UIControl alloc] initWithFrame:self.navigationController.view.bounds];
-        _backView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.2];
+        _backView.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.3];
         [_backView addTarget:self action:@selector(handleTapBackView:) forControlEvents:UIControlEventTouchDown];
         controller.view.center = _backView.center;
         [_backView addSubview:controller.view];

@@ -70,7 +70,7 @@ typedef enum transientStates {
 @property BOOL isPDF;
 @property (copy, nonatomic) NSString *realPath;
 @property (nonatomic, assign) BOOL favorits;
-@property (nonatomic, copy) NSArray *previews;
+@property (nonatomic, copy) NSDictionary *previews;
 
 @property (retain, nonatomic) BakerBook *bakerBook;
 
