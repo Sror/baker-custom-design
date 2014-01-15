@@ -26,6 +26,7 @@
 #import <UIKit/UIKit.h>
 
 #import "ReaderDocument.h"
+#import "BakerIssue.h"
 
 @class ReaderViewController;
 
@@ -42,5 +43,7 @@
 @property (nonatomic, weak, readwrite) id <ReaderViewControllerDelegate> delegate;
 
 - (id)initWithReaderDocument:(ReaderDocument *)object;
+
+@property (weak, nonatomic) BakerIssue *bakerIssue;
 
 @end

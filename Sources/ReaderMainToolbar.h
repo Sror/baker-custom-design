@@ -26,6 +26,7 @@
 #import <UIKit/UIKit.h>
 
 #import "UIXToolbarView.h"
+#import "BakerIssue.h"
 
 @class ReaderMainToolbar;
 @class ReaderDocument;
@@ -45,6 +46,8 @@
 @interface ReaderMainToolbar : UIXToolbarView
 
 @property (nonatomic, weak, readwrite) id <ReaderMainToolbarDelegate> delegate;
+
+@property (weak, nonatomic) BakerIssue *bakerIssue;
 
 - (id)initWithFrame:(CGRect)frame document:(ReaderDocument *)object;
 
