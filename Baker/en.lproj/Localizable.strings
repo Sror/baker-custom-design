@@ -119,3 +119,8 @@
 // (These are just examples: you'll need to provide your own product IDs and names)
 "com.basispress.overtime_1year" = "1 Year Subscription";
 //"com.example.MyBook.subscription.6months" = "Half Year Subscription";
+
+
+
+"Contents" = "Contents";
+"Done" = "Done";

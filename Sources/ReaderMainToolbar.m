@@ -35,6 +35,8 @@
 
 	UIImage *markImageN;
 	UIImage *markImageY;
+    UIButton *thumbsButton;
+    UIButton *favButton;
 }
 
 #pragma mark Constants
@@ -99,12 +101,25 @@
 		[self addSubview:doneButton]; leftButtonX += (DONE_BUTTON_WIDTH + BUTTON_SPACE);
 
 		titleX += (DONE_BUTTON_WIDTH + BUTTON_SPACE); titleWidth -= (DONE_BUTTON_WIDTH + BUTTON_SPACE);
+        
+        favButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        
+		favButton.frame = CGRectMake(viewWidth - (DONE_BUTTON_WIDTH*3 + BUTTON_X), BUTTON_Y, DONE_BUTTON_WIDTH, BUTTON_HEIGHT);
+		[favButton addTarget:self action:@selector(favButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [favButton setImage:[UIImage imageNamed:@"Reader-Mark-Y.png"] forState:UIControlStateSelected];
+        [favButton setImage:[UIImage imageNamed:@"Reader-Mark-N.png"] forState:UIControlStateNormal];
+//		favButton.autoresizingMask = UIViewAutoresizingNone;
+//		favButton.exclusiveTouch = YES;
+        
+		[self addSubview:favButton]; leftButtonX += (DONE_BUTTON_WIDTH + BUTTON_SPACE);
+        
+		titleX += (DONE_BUTTON_WIDTH + BUTTON_SPACE); titleWidth -= (DONE_BUTTON_WIDTH + BUTTON_SPACE);
 
 #endif // end of READER_STANDALONE Option
 
 #if (READER_ENABLE_THUMBS == TRUE) // Option
 
-		UIButton *thumbsButton = [UIButton buttonWithType:UIButtonTypeSystem];
+		thumbsButton = [UIButton buttonWithType:UIButtonTypeSystem];
 
         [thumbsButton setTitle:NSLocalizedString(@"Contents", @"button") forState:UIControlStateNormal];
 //		[thumbsButton setImage:[UIImage imageNamed:@"Reader-Thumbs"] forState:UIControlStateNormal];
@@ -304,6 +319,18 @@
 	}
 }
 
+- (void)layoutSubviews
+{
+    favButton.frame = CGRectMake(self.bounds.size.width - (DONE_BUTTON_WIDTH*3 + BUTTON_X), BUTTON_Y, DONE_BUTTON_WIDTH, BUTTON_HEIGHT);
+    thumbsButton.frame = CGRectMake(self.bounds.size.width - (thumbsButton.bounds.size.width + BUTTON_X), BUTTON_Y, thumbsButton.bounds.size.width, BUTTON_HEIGHT);
+}
+
+- (void)setBakerIssue:(BakerIssue *)bakerIssue
+{
+    _bakerIssue = bakerIssue;
+    favButton.selected = bakerIssue.favorits;
+}
+
 #pragma mark UIButton action methods
 
 - (void)doneButtonTapped:(UIButton *)button
@@ -329,6 +356,12 @@
 - (void)markButtonTapped:(UIButton *)button
 {
 	[delegate tappedInToolbar:self markButton:button];
+}
+
+- (void)favButtonAction:(UIButton *)button
+{
+    favButton.selected = !favButton.selected;
+    self.bakerIssue.favorits = favButton.selected;
 }
 
 @end

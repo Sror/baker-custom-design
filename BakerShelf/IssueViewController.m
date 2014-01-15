@@ -141,7 +141,7 @@
     [self refreshNewState];
 
     // SETUP TITLE LABEL
-    self.titleLabel = [[[UILabel alloc] init] autorelease];
+    self.titleLabel = [[UILabel alloc] init];
     titleLabel.textColor = [UIColor colorWithHexString:ISSUES_TITLE_COLOR];
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
@@ -207,7 +207,7 @@
 //    [self.view addSubview:loadingLabel];
 
     // SETUP PROGRESS BAR
-    self.progressBar = [[[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault] autorelease];
+    self.progressBar = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
 //    self.progressBar.progressTintColor = [UIColor colorWithHexString:ISSUES_PROGRESSBAR_TINT_COLOR];
 
     [self.view addSubview:progressBar];
@@ -347,7 +347,7 @@
 - (BOOL)isEqualMonth:(NSString *)string {
     BOOL ret = NO;
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    NSLocale *enUSPOSIXLocale = [[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"] autorelease];
+    NSLocale *enUSPOSIXLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
     [dateFormat setLocale:enUSPOSIXLocale];
     [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     [dateFormat setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
@@ -380,6 +380,7 @@
 {
     [super viewWillAppear:animated];
     [self refresh];
+    _favoriteButton.selected = self.issue.favorits;
 }
 - (void)refresh
 {
@@ -521,26 +522,7 @@
     self.currentStatus = status;
 }
 
-#pragma mark - Memory management
 
-- (void)dealloc
-{
-    [_favoriteButton release];
-    [issue release];
-    [actionButton release];
-    [archiveButton release];
-    [progressBar release];
-    [spinner release];
-    [loadingLabel release];
-    [priceLabel release];
-    [issueCover release];
-    [titleLabel release];
-    [infoLabel release];
-    [currentStatus release];
-    [newStateImage release];
-
-    [super dealloc];
-}
 
 #pragma mark - Issue management
 
@@ -729,7 +711,6 @@
                                 cancelButtonTitle: NSLocalizedString(@"ARCHIVE_ALERT_BUTTON_CANCEL", nil)
                                 otherButtonTitles: NSLocalizedString(@"ARCHIVE_ALERT_BUTTON_OK", nil), nil];
     [updateAlert show];
-    [updateAlert release];
 }
 
 - (void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
