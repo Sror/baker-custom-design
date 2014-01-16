@@ -40,15 +40,8 @@
     
     self.favoriteButton.selected = _issueVC.issue.favorits;
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-        
-        UIBarButtonItem *buyItem = [[UIBarButtonItem alloc] initWithTitle:_issueVC.issue.price style:UIBarButtonItemStylePlain target:self action:@selector(buyAction:)];
-        UIBarButtonItem *subsc = [[UIBarButtonItem alloc ]initWithTitle:NSLocalizedString(@"Subscription", nil) style:UIBarButtonItemStylePlain target:self action:@selector(subscribe)];
-        
-        self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:buyItem, subsc, nil];
-    } else {
-        [self.buyButton setTitle:_issueVC.issue.price forState:UIControlStateNormal];
-    }
+    [self.buyButton setTitle:_issueVC.issue.price forState:UIControlStateNormal];
+    [self.subscrButton setTitle:NSLocalizedString(@"Subscription", nil) forState:UIControlStateNormal];
     
     self.backgroundForScrollView.layer.masksToBounds = NO;
     self.backgroundForScrollView.layer.shadowRadius = 5;
@@ -165,6 +158,7 @@
 }
 
 - (IBAction)subscribeAction:(id)sender {
+    [_delegate detailViewControllerDelegateShowSubscribeAlertView];
 }
 
 - (IBAction)favoriteAction:(id)sender {

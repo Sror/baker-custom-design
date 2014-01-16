@@ -12,6 +12,7 @@
                 <outlet property="favoriteButton" destination="rPu-AC-ddL" id="QT1-I9-oJy"/>
                 <outlet property="imagesScrollView" destination="3FQ-jm-pDg" id="O3B-J0-W38"/>
                 <outlet property="pageControl" destination="7vB-jV-8xQ" id="uHf-IT-Gb9"/>
+                <outlet property="subscrButton" destination="tVZ-qf-l47" id="wsb-Ln-Ktk"/>
                 <outlet property="textScrollView" destination="sbh-o9-4QM" id="oLY-tm-i3O"/>
                 <outlet property="titleLabel" destination="ppY-nS-uBS" id="arQ-Ze-8Gc"/>
                 <outlet property="view" destination="2" id="3"/>

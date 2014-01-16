@@ -22,6 +22,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UIButton *favoriteButton;
 @property (strong, nonatomic) IBOutlet UIButton *buyButton;
+@property (retain, nonatomic) IBOutlet UIButton *subscrButton;
 @property (strong, nonatomic) IssueViewController *issueVC;
 @property (strong, nonatomic) IBOutlet UIView *backgroundForScrollView;
 @property (weak) id <DetailViewControllerDelegate> delegate;
