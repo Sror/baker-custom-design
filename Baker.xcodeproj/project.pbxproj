@@ -857,9 +857,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/shamatov/Downloads/baker-master\\ 7/Flurry",
-					"/Users/mariya/Desktop/baker-master\\ 7/Flurry",
-					"/Users/antonmalygin/Documents/baker-custom-design/Flurry",
+					"$(SRCROOT)/Flurry",
 				);
 				PRODUCT_NAME = Overtime;
 				PROVISIONING_PROFILE = "";
@@ -881,9 +879,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/shamatov/Downloads/baker-master\\ 7/Flurry",
-					"/Users/mariya/Desktop/baker-master\\ 7/Flurry",
-					"/Users/antonmalygin/Documents/baker-custom-design/Flurry",
+					"$(SRCROOT)/Flurry",
 				);
 				PRODUCT_NAME = Overtime;
 				PROVISIONING_PROFILE = "";
