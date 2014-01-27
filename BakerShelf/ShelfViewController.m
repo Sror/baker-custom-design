@@ -53,6 +53,7 @@
 {
     UITabBar *_tabBar;
     UIControl *_backView;
+    DetailViewController *_detCont;
 }
 
 @end
@@ -1056,8 +1057,8 @@
 
 - (void)showViewController:(UIViewController *)controller
 {
-    DetailViewController *detCont = (DetailViewController *)controller;
-    detCont.delegate = self;
+    _detCont = (DetailViewController *)controller;
+    _detCont.delegate = self;
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         [self.navigationController pushViewController:controller animated:YES];
     } else {
