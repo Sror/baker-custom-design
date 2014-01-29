@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  Baker
+
+  Created by Антон Малыгин on 29.01.14.
+
+*/
+
+"CFBundleDisplayName" = "Name";
+"CFBundleName" = "Name";

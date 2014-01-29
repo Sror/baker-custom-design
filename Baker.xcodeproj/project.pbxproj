@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		049BC9191899477500901AA4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 049BC91B1899477500901AA4 /* InfoPlist.strings */; };
 		049D15E9188586EA004F91F4 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 049D15E8188586EA004F91F4 /* WebViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		049D15EA188589D0004F91F4 /* libFlurry_4.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD2C6F7D18844D57002C166C /* libFlurry_4.3.0.a */; };
 		04A0660C186ACF6A00A351F6 /* InfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A0660B186ACF6A00A351F6 /* InfoTableViewController.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -115,6 +116,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		049BC91A1899477500901AA4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		049BC91C1899477B00901AA4 /* ru */ = {isa = PBXFileReference; lastKnownFileType = file; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		049D15E7188586EA004F91F4 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		049D15E8188586EA004F91F4 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		04A0660A186ACF6A00A351F6 /* InfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoTableViewController.h; sourceTree = "<group>"; };
@@ -588,6 +591,7 @@
 				ABAFB59315AB9A2E002FA498 /* Baker-Info.plist */,
 				ABAFB59715AB9A2E002FA498 /* main.m */,
 				ABAFB59915AB9A2E002FA498 /* Baker-Prefix.pch */,
+				049BC91B1899477500901AA4 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -693,6 +697,7 @@
 				259DF28A1879E66E003C4AFB /* new_state@2x.png in Resources */,
 				25807A6518717CC90059553D /* fav_bar_active@2x.png in Resources */,
 				20CC551D16AD346900DEFB5C /* Localizable.strings in Resources */,
+				049BC9191899477500901AA4 /* InfoPlist.strings in Resources */,
 				25807A3D187062940059553D /* fav_on@2x.png in Resources */,
 				25807A3C187062940059553D /* fav_on.png in Resources */,
 				BF0785EB1794AF4000EB988E /* info in Resources */,
@@ -772,6 +777,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		049BC91B1899477500901AA4 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				049BC91A1899477500901AA4 /* en */,
+				049BC91C1899477B00901AA4 /* ru */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		20CC551F16AD346900DEFB5C /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

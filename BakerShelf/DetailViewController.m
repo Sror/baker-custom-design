@@ -82,11 +82,12 @@
         infoLabel.numberOfLines = 0;
         infoLabel.text = [dict objectForKey:str];
         infoLabel.backgroundColor = [UIColor clearColor];
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-            infoLabel.textAlignment = NSTextAlignmentLeft;
-        } else {
-            infoLabel.textAlignment = NSTextAlignmentRight;
-        }
+//        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+//            infoLabel.textAlignment = NSTextAlignmentLeft;
+//        } else {
+//            infoLabel.textAlignment = NSTextAlignmentRight;
+//        }
+        infoLabel.textAlignment = NSTextAlignmentLeft;
         infoLabel.lineBreakMode = NSLineBreakByWordWrapping;
         [self.textScrollView addSubview:infoLabel];
         
