@@ -81,6 +81,7 @@
         UILabel *infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, originY, self.textScrollView.bounds.size.width, self.textScrollView.bounds.size.height)];
         infoLabel.numberOfLines = 0;
         infoLabel.text = [dict objectForKey:str];
+        infoLabel.backgroundColor = [UIColor clearColor];
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
             infoLabel.textAlignment = NSTextAlignmentLeft;
         } else {

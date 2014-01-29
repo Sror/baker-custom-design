@@ -165,12 +165,17 @@
     [self willRotateToInterfaceOrientation:self.interfaceOrientation duration:0];
     [self.gridView reloadData];
     
-    UITabBarItem *allBooks = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Shop", nil) image:[UIImage imageNamed:@"shop.png"] selectedImage:[UIImage imageNamed:@"shop_active.png"]];
-    allBooks.tag = 0;
-    UITabBarItem *pBooks = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Downloads", nil) image:[UIImage imageNamed:@"down_inactive.png"] selectedImage:[UIImage imageNamed:@"down_active.png"]];
-    pBooks.tag = 1;
-    UITabBarItem *fBooks = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Favorits", nil) image:[UIImage imageNamed:@"fav_bar.png"] selectedImage:[UIImage imageNamed:@"fav_bar_active.png"]];
-    fBooks.tag = 2;
+    UITabBarItem *allBooks = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Shop", nil) image:[UIImage imageNamed:@"shop.png"] tag:0];
+    
+    UITabBarItem *pBooks = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Downloads", nil) image:[UIImage imageNamed:@"down_inactive.png"] tag:1];
+    
+    UITabBarItem *fBooks = [[UITabBarItem alloc] initWithTitle:NSLocalizedString(@"Favorits", nil) image:[UIImage imageNamed:@"fav_bar.png"] tag:2];
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        allBooks.selectedImage = [UIImage imageNamed:@"shop_active.png"];
+        pBooks.selectedImage = [UIImage imageNamed:@"down_active.png"];
+        fBooks.selectedImage = [UIImage imageNamed:@"fav_bar_active.png"];
+    }
     
     _tabBar = [[UITabBar alloc] init];
     _tabBar.delegate = self;

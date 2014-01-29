@@ -298,8 +298,18 @@
     
     if (urlPreview) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void) {
-            NSData *imageData = [NSData dataWithContentsOfURL:urlPreview];
+            NSString *name = [urlPreview lastPathComponent];
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+            NSString *screenshotDirectory = [NSString stringWithFormat:@"%@/%@", [paths lastObject], name];
+            NSData *imageData = [NSData dataWithContentsOfFile:screenshotDirectory options:0 error:nil];
+            if (!imageData) {
+                imageData = [NSData dataWithContentsOfURL:urlPreview];
+                if (imageData) {
+                    [imageData writeToFile:screenshotDirectory atomically:YES];
+                }
+            }
             if (imageData) {
+                
                 UIImage *image = [UIImage imageWithData:imageData];
                 if (image) {
                     dispatch_async(dispatch_get_main_queue(), ^(void) {
