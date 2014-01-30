@@ -2,7 +2,7 @@
 //  DetailViewController.m
 //  Baker
 //
-//  Created by Антон Малыгин on 27.12.13.
+//  Created by *** on 27.12.13.
 //
 //
 

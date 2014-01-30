@@ -2,7 +2,7 @@
 //  PreviewImageView.m
 //  Baker
 //
-//  Created by Антон Малыгин on 28.12.13.
+//  Created by *** on 28.12.13.
 //
 //
 

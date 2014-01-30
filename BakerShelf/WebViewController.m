@@ -2,7 +2,7 @@
 //  WebViewController.m
 //  Baker
 //
-//  Created by Антон Малыгин on 14.01.14.
+//  Created by *** on 14.01.14.
 //
 //
 

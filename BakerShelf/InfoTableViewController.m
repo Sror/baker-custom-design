@@ -2,7 +2,7 @@
 //  InfoTableViewController.m
 //  Baker
 //
-//  Created by Антон Малыгин on 25.12.13.
+//  Created by *** on 25.12.13.
 //
 //
 
