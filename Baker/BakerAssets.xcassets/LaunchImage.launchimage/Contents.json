@@ -65,6 +65,14 @@
     },
     {
       "orientation" : "portrait",
+      "idiom" : "iphone",
+      "extent" : "full-screen",
+      "subtype" : "retina4",
+      "filename" : "Default-568h@2x.png",
+      "scale" : "2x"
+    },
+    {
+      "orientation" : "portrait",
       "idiom" : "ipad",
       "extent" : "to-status-bar",
       "filename" : "Default~ipad.png",
